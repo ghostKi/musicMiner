@@ -1,4 +1,4 @@
 musicMiner
 ==========
 
-We mine the latest music new for you !
+We mine the latest music articles for you !
