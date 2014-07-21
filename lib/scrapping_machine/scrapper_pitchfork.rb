@@ -7,28 +7,31 @@ module ScrappingMachine
     end
 
     def scrap
-      doc = Nokogiri::HTML(open(@article.article_url))
+      @doc = Nokogiri::HTML(open(@article.article_url))
 
       article_attr = {}
-
-      article_attr[:title] = doc.xpath('//h1').first.content
-      puts article_attr[:title]
-
-      doc.xpath('//div[@class="player-target editorial"]').each do |link|
-        article_attr[:body] = link.content
-        puts link.content
+      %w(title body summary).each do |meth|
+        article_attr.merge!(self.send(meth))
       end
-      doc.xpath('//h2').each do |link|
-        article_attr[:summary] = link.content
-        puts link.content
-      end
-      doc.xpath('//span[@class="pubdate"]').each do |link|
-        article_attr[:published_at] = link.content
-        puts link.content
-      end
+      article_attr.merge!(scrapped: true)
+    end
 
-      article_attr[:scrapped] = true
-      return article_attr
+    private
+
+    ##
+    # TODO! h1 and h2 are wayyyyyy to weak for the job. Classes/ids preferred!
+
+    def title
+      { title: @doc.xpath('//h1').first.content }
+    end
+
+    def body
+      { body: @doc.xpath('//div[@class="player-target editorial"]').first
+        .content }
+    end
+
+    def summary
+      { summary: @doc.xpath('//h2').first.content }
     end
   end
 end
