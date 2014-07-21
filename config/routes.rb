@@ -1,5 +1,9 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
-  root 'feed#index'
+  root to: 'feed#index'
+  resources :articles, only: :show, controller: 'feed'
+  mount Sidekiq::Web, at: '/sidekiq'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

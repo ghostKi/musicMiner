@@ -1,76 +1,17 @@
-<h1>Welcome to Music Miner!</h1>
-
-<div class="row">
-   <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-         <img src="/bootstrap/images/kittens.jpg"
-         alt="Generic placeholder thumbnail">
-      </div>
-      <div class="caption">
-         <h3>Thumbnail label</h3>
-         <p>Some sample text. Some sample text.</p>
-         <p>
-            <a href="#" class="btn btn-primary" role="button">
-               Button
-            </a>
-            <a href="#" class="btn btn-default" role="button">
-               Button
-            </a>
-         </p>
-      </div>
-   </div>
-   <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-         <img src="/bootstrap/images/kittens.jpg"
-         alt="Generic placeholder thumbnail">
-      </div>
-      <div class="caption">
-         <h3>Thumbnail label</h3>
-         <p>Some sample text. Some sample text.</p>
-         <p>
-            <a href="#" class="btn btn-primary" role="button">
-               Button
-            </a>
-            <a href="#" class="btn btn-default" role="button">
-               Button
-            </a>
-         </p>
-      </div>
-   </div>
-   <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-         <img src="/bootstrap/images/kittens.jpg"
-         alt="Generic placeholder thumbnail">
-      </div>
-      <div class="caption">
-         <h3>Thumbnail label</h3>
-         <p>Some sample text. Some sample text.</p>
-         <p>
-            <a href="#" class="btn btn-primary" role="button">
-               Button
-            </a>
-            <a href="#" class="btn btn-default" role="button">
-               Button
-            </a>
-         </p>
-      </div>
-   </div>
-   <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-         <img src="/bootstrap/images/kittens.jpg"
-         alt="Generic placeholder thumbnail">
-      </div>
-      <div class="caption">
-         <h3>Thumbnail label</h3>
-         <p>Some sample text. Some sample text.</p>
-         <p>
-            <a href="#" class="btn btn-primary" role="button">
-               Button
-            </a>
-            <a href="#" class="btn btn-default" role="button">
-               Button
-            </a>
-         </p>
-      </div>
-   </div>
+<br>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Articles</h3>
+  </div>
+  <div class="panel-body">
+      <div class="list-group">
+        <% @articles.each do |article|%>
+        <a href="/articles/<%=article.id%>" class="list-group-item">
+          <h4 class="list-group-item-heading"><%= article.title %></h4>
+          <p class="list-group-item-text"><%= article.summary%>   <small><strong>from</strong> <%= @sources.find(article.source_id).source_name%></small></p>
+        </a>
+        <% end %>
+    </div>
+  </div>
+</div>
 </div>

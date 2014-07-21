@@ -1,0 +1,8 @@
+<h1><%= @article.title %></h1>
+<br>
+<h3><%= @article.summary %></h3>
+<br>
+<br>
+<p><%= @article.body%></p>
+<br>
+<p><small><strong>from</strong> <%= @sources.find(@article.source_id).source_name%> <strong>@</strong> <%= @article.published_at%></small></p>

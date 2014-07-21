@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140720012648) do
+ActiveRecord::Schema.define(version: 20140720231616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,13 @@ ActiveRecord::Schema.define(version: 20140720012648) do
     t.datetime "updated_at"
     t.integer  "source_id"
     t.date     "published_at"
+    t.string   "check_sum"
+    t.string   "article_url"
+    t.boolean  "scrapped",     default: false
   end
 
+  add_index "articles", ["check_sum"], name: "index_articles_on_check_sum", unique: true, using: :btree
+  add_index "articles", ["scrapped"], name: "index_articles_on_scrapped", using: :btree
   add_index "articles", ["source_id"], name: "index_articles_on_source_id", using: :btree
 
   create_table "sources", force: true do |t|
